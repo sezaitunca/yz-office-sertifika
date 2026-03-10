@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yapay Zeka ile Ofis Programları Sertifika Programı — Alanya Üniversitesi SEM</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--teal-dark:#1a5c5e;--teal:#1f7a7e;--teal-light:#2a9d8f;--teal-pale:#e8f4f4;--gold:#e9a820;--gold-light:#f5c842;--bg-white:#fff;--bg-light:#f7f8fa;--text-dark:#2c3e50;--text-body:#4a5568;--text-muted:#718096;--border:#e2e8f0;--border-light:#edf2f7;--font:'Open Sans',sans-serif;--shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 14px rgba(0,0,0,.08);--shadow-lg:0 10px 30px rgba(0,0,0,.1);--r:4px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:var(--font);color:var(--text-body);line-height:1.7;background:var(--bg-white)}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* TOP BAR */
+.top-bar{background:var(--teal-dark);color:#fff;font-size:.8rem;padding:6px 0}
+.top-bar .container{display:flex;justify-content:space-between;align-items:center}
+.top-bar-left{display:flex;gap:16px}.top-bar-left a{color:rgba(255,255,255,.8);text-decoration:none;transition:color .2s}.top-bar-left a:hover{color:#fff}
+.top-bar-right{display:flex;gap:20px}.top-bar-right a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600;font-size:.78rem;letter-spacing:.03em}.top-bar-right a:hover{color:var(--gold-light)}
+
+/* NAV */
+nav{background:var(--bg-white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm)}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-grid{display:grid;grid-template-columns:14px 14px;gap:3px}
+.logo-sq{width:14px;height:14px;border-radius:2px}.sq1{background:#e8a025}.sq2{background:#1a5c5e}.sq3{background:#3ca65e}.sq4{background:#2a9d8f}
+.nav-uni-name{font-size:1.1rem;font-weight:700;color:var(--teal-dark);line-height:1.15;letter-spacing:.02em}.nav-uni-name span{display:block}
+.nav-links{display:flex;list-style:none}.nav-links li a{display:block;padding:0 16px;color:var(--text-dark);text-decoration:none;font-size:.85rem;font-weight:600;letter-spacing:.02em;text-transform:uppercase;line-height:70px;border-bottom:3px solid transparent;transition:all .2s}.nav-links li a:hover{color:var(--teal);border-bottom-color:var(--teal)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px}.hamburger span{display:block;width:22px;height:2px;background:var(--teal-dark);margin:5px 0;border-radius:2px}
+
+/* BREADCRUMB */
+.breadcrumb-bar{background:var(--bg-light);border-bottom:1px solid var(--border);padding:12px 0;font-size:.82rem;color:var(--text-muted)}.breadcrumb-bar a{color:var(--teal);text-decoration:none}.breadcrumb-bar a:hover{text-decoration:underline}.sep{margin:0 6px}
+
+/* HERO */
+.hero-banner{background:linear-gradient(135deg,var(--teal-dark) 0%,var(--teal) 60%,var(--teal-light) 100%);color:#fff;padding:70px 0 60px;position:relative;overflow:hidden}
+.hero-banner::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,.06),transparent 70%);border-radius:50%}
+.hero-banner::after{content:'';position:absolute;bottom:-30%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(233,168,32,.08),transparent 70%);border-radius:50%}
+.hero-inner{position:relative;z-index:1}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:5px 14px;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}
+.hero-inner h1{font-size:2.4rem;font-weight:800;line-height:1.2;letter-spacing:-.01em;margin-bottom:8px}.hero-inner h1 .hl{color:var(--gold-light)}
+.hero-sub{font-size:1.05rem;opacity:.9;margin-bottom:6px;font-weight:300}
+.hero-approach{display:inline-block;background:rgba(233,168,32,.2);border:1px solid rgba(233,168,32,.4);border-radius:4px;padding:4px 14px;font-size:.82rem;font-weight:600;margin-bottom:16px}
+.hero-instructor{font-size:.92rem;opacity:.85;margin-bottom:28px}.hero-instructor strong{font-weight:700;opacity:1}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 28px;border-radius:var(--r);font-family:var(--font);font-weight:600;font-size:.9rem;text-decoration:none;cursor:pointer;transition:all .25s;border:none;letter-spacing:.02em}
+.btn-gold{background:var(--gold);color:#fff}.btn-gold:hover{background:var(--gold-light);box-shadow:0 4px 16px rgba(233,168,32,.3)}
+.btn-outline{background:transparent;border:2px solid rgba(255,255,255,.5);color:#fff}.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.hero-stats{display:flex;margin-top:40px;border-top:1px solid rgba(255,255,255,.15);padding-top:24px}
+.hero-stat{flex:1;text-align:center;border-right:1px solid rgba(255,255,255,.12)}.hero-stat:last-child{border-right:none}
+.hero-stat h3{font-size:1.8rem;font-weight:800;color:var(--gold-light)}.hero-stat p{font-size:.78rem;opacity:.7;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-top:2px}
+
+/* ICON CARDS */
+.icon-cards{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.icon-card{text-align:center;padding:36px 20px;background:var(--bg-white);border-right:1px solid var(--border);transition:background .3s}.icon-card:last-child{border-right:none}.icon-card:hover{background:var(--teal-pale)}
+.ic-icon{width:64px;height:64px;border-radius:50%;border:2px solid var(--teal);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.5rem;color:var(--teal-dark);transition:all .3s}.icon-card:hover .ic-icon{background:var(--teal);color:#fff}
+.icon-card h4{font-size:.88rem;font-weight:600;color:var(--text-dark);line-height:1.4}
+
+/* SECTIONS */
+section{padding:60px 0}.section-header{margin-bottom:40px}.section-header.center{text-align:center}
+.section-label{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.section-header h2{font-size:1.7rem;font-weight:700;color:var(--text-dark);line-height:1.3}
+.section-header p{color:var(--text-muted);font-size:.95rem;margin-top:8px;max-width:640px}.section-header.center p{margin-left:auto;margin-right:auto}
+.section-divider{width:50px;height:3px;background:var(--teal);border-radius:2px;margin-top:12px}.section-header.center .section-divider{margin-left:auto;margin-right:auto}
+
+/* HYBRID APPROACH */
+.hybrid-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+.hybrid-card{background:var(--bg-white);border:1px solid var(--border);border-radius:var(--r);padding:28px;transition:all .3s;border-top:3px solid transparent}
+.hybrid-card:hover{box-shadow:var(--shadow-md)}
+.hybrid-card.copilot{border-top-color:var(--teal)}.hybrid-card.claude{border-top-color:#d97706}
+.hybrid-card .hc-badge{display:inline-block;padding:4px 12px;border-radius:4px;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+.hybrid-card.copilot .hc-badge{background:var(--teal-pale);color:var(--teal-dark)}
+.hybrid-card.claude .hc-badge{background:#fef3c7;color:#92400e}
+.hybrid-card h3{font-size:1.05rem;font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.hybrid-card p{font-size:.88rem;color:var(--text-muted);margin-bottom:16px;line-height:1.6}
+.hybrid-card ul{list-style:none}.hybrid-card ul li{padding:4px 0 4px 18px;font-size:.85rem;color:var(--text-body);position:relative}
+.hybrid-card ul li::before{content:'✓';position:absolute;left:0;color:var(--teal);font-weight:700;font-size:.8rem}
+
+/* LEVEL CARDS */
+.levels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.level-card{background:var(--bg-white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:box-shadow .3s,transform .2s}.level-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.lc-header{padding:24px 24px 20px;color:#fff}
+.level-card:nth-child(1) .lc-header{background:var(--teal)}.level-card:nth-child(2) .lc-header{background:var(--teal-dark)}.level-card:nth-child(3) .lc-header{background:linear-gradient(135deg,var(--teal-dark),#0f3d3e)}
+.lc-tag{display:inline-block;padding:3px 10px;border-radius:3px;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.2);margin-bottom:10px}
+.lc-header h3{font-size:1.15rem;font-weight:700;margin-bottom:4px}.lc-header p{font-size:.85rem;opacity:.85;font-weight:300}
+.lc-tools{padding:8px 24px;background:rgba(233,168,32,.08);font-size:.78rem;color:#92400e;font-weight:600;border-bottom:1px solid var(--border)}
+.lc-tools i{margin-right:4px}
+.lc-meta{display:flex;border-bottom:1px solid var(--border)}.lc-meta-item{flex:1;text-align:center;padding:12px 8px;border-right:1px solid var(--border);font-size:.78rem;color:var(--text-muted)}.lc-meta-item:last-child{border-right:none}.lc-meta-item strong{display:block;font-size:.95rem;color:var(--teal-dark);font-weight:700}
+.lc-body{padding:20px 24px 24px}.lc-body h5{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:12px}
+.lc-body ul{list-style:none}.lc-body ul li{padding:5px 0 5px 18px;font-size:.88rem;color:var(--text-body);position:relative}.lc-body ul li::before{content:'';position:absolute;left:0;top:13px;width:6px;height:6px;border-radius:50%;background:var(--teal)}
+
+/* TABS */
+.tab-nav{display:flex;border-bottom:2px solid var(--border);margin-bottom:32px}
+.tab-btn{padding:14px 28px;background:none;border:none;font-family:var(--font);font-size:.88rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .2s;border-bottom:3px solid transparent;margin-bottom:-2px;text-transform:uppercase;letter-spacing:.03em}.tab-btn:hover{color:var(--teal)}.tab-btn.active{color:var(--teal-dark);border-bottom-color:var(--teal)}
+.tab-content{display:none}.tab-content.active{display:block}
+
+/* TABLE */
+.curr-table{width:100%;border-collapse:collapse;background:var(--bg-white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.curr-table thead th{background:var(--teal-dark);color:#fff;padding:13px 16px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;text-align:left}.curr-table thead th:first-child{width:60px;text-align:center}
+.curr-table tbody tr{transition:background .15s}.curr-table tbody tr:hover{background:var(--teal-pale)}.curr-table tbody tr:nth-child(even){background:var(--bg-light)}.curr-table tbody tr:nth-child(even):hover{background:var(--teal-pale)}
+.curr-table tbody td{padding:13px 16px;font-size:.88rem;color:var(--text-body);border-bottom:1px solid var(--border-light);vertical-align:top}.curr-table tbody td:first-child{text-align:center;font-weight:700;color:var(--teal-dark)}.curr-table tbody td:nth-child(2){font-weight:600;color:var(--text-dark)}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feature-card{background:var(--bg-white);border:1px solid var(--border);border-radius:var(--r);padding:28px 24px;transition:all .3s;border-top:3px solid transparent}.feature-card:hover{border-top-color:var(--teal);box-shadow:var(--shadow-md)}
+.feature-icon{width:44px;height:44px;border-radius:var(--r);background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--teal-dark);font-size:1.1rem}
+.feature-card h4{font-size:.95rem;font-weight:700;color:var(--text-dark);margin-bottom:6px}.feature-card p{font-size:.85rem;color:var(--text-muted);line-height:1.6}
+
+/* TOOLS */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.tool-item{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--bg-white);border:1px solid var(--border);border-radius:var(--r);font-size:.88rem;font-weight:500;color:var(--text-dark);transition:all .2s}.tool-item:hover{border-color:var(--teal);background:var(--teal-pale)}.tool-item i{color:var(--teal);font-size:1rem;width:20px;text-align:center}
+
+/* INSTRUCTOR */
+.instructor-box{display:flex;align-items:center;gap:32px;background:var(--bg-white);border:1px solid var(--border);border-radius:var(--r);padding:32px}
+.instructor-avatar{width:100px;height:100px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;color:#fff;font-size:2.2rem;font-weight:700;flex-shrink:0}
+.instructor-info h3{font-size:1.1rem;font-weight:700;color:var(--text-dark);margin-bottom:2px}.instructor-info .title{font-size:.88rem;color:var(--teal);font-weight:600;margin-bottom:8px}.instructor-info p{font-size:.88rem;color:var(--text-muted)}
+
+/* CERT */
+.cert-flow{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:32px}
+.cert-step{background:var(--bg-white);border:1px solid var(--border);border-radius:var(--r);padding:24px 20px;text-align:center;width:200px;transition:all .3s}.cert-step:hover{box-shadow:var(--shadow-md);border-color:var(--teal)}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;margin:0 auto 12px}
+.cert-step h4{font-size:.88rem;font-weight:700;color:var(--text-dark);margin-bottom:4px}.cert-step p{font-size:.78rem;color:var(--text-muted)}
+.cert-arrow{color:var(--teal);font-size:1.3rem}
+.cert-final{background:var(--teal-dark);color:#fff;border-radius:var(--r);padding:32px;text-align:center}.cert-final h3{font-size:1.2rem;font-weight:700;margin-bottom:6px}.cert-final p{opacity:.8;font-size:.9rem}.cert-final .gold-badge{color:var(--gold-light);font-size:2rem;margin-bottom:8px}
+
+/* CTA */
+.cta-section{background:linear-gradient(135deg,var(--teal-dark),var(--teal));color:#fff;text-align:center;padding:60px 0}
+.cta-section h2{font-size:1.7rem;font-weight:700;margin-bottom:12px}.cta-section p{opacity:.85;font-size:1rem;max-width:500px;margin:0 auto 28px}
+.btn-gold-lg{display:inline-block;padding:14px 40px;background:var(--gold);color:#fff;border:none;border-radius:var(--r);font-family:var(--font);font-weight:700;font-size:1rem;cursor:pointer;transition:all .25s;text-decoration:none}.btn-gold-lg:hover{background:var(--gold-light);box-shadow:0 6px 20px rgba(233,168,32,.35)}
+
+/* FOOTER */
+footer{background:#1a2332;color:rgba(255,255,255,.6);padding:40px 0 24px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:32px}
+.footer-brand h3{color:#fff;font-size:1rem;font-weight:700;margin-bottom:8px}.footer-brand p{font-size:.83rem;line-height:1.7}
+.footer-col h4{color:#fff;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+.footer-col ul{list-style:none}.footer-col ul li{margin-bottom:8px}.footer-col ul li a{color:rgba(255,255,255,.6);text-decoration:none;font-size:.83rem;transition:color .2s}.footer-col ul li a:hover{color:var(--gold-light)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;align-items:center;font-size:.78rem}
+.footer-socials{display:flex;gap:12px}.footer-socials a{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);text-decoration:none;font-size:.85rem;transition:all .2s}.footer-socials a:hover{border-color:var(--gold-light);color:var(--gold-light)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.levels-grid,.features-grid,.hybrid-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.icon-cards{grid-template-columns:repeat(2,1fr)}.icon-card{border-bottom:1px solid var(--border)}.nav-links{display:none}.hamburger{display:block}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:70px;left:0;right:0;background:var(--bg-white);border-bottom:1px solid var(--border);box-shadow:var(--shadow-md);z-index:99}.nav-links.open li a{line-height:48px;padding:0 20px}.top-bar .container{flex-direction:column;gap:4px;text-align:center}.hero-stats{flex-wrap:wrap}.hero-stat{min-width:50%;border-bottom:1px solid rgba(255,255,255,.1);padding:16px 0}.hero-inner h1{font-size:1.7rem}.tab-nav{overflow-x:auto}.tab-btn{white-space:nowrap;padding:12px 14px;font-size:.8rem}.cert-flow{flex-direction:column}.cert-arrow{transform:rotate(90deg)}.instructor-box{flex-direction:column;text-align:center}.footer-bottom{flex-direction:column;gap:12px;text-align:center}}
+@media(max-width:480px){.icon-cards{grid-template-columns:1fr}.tools-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar"><div class="container">
+  <div class="top-bar-left"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="tel:+902425136969"><i class="fas fa-phone"></i></a><a href="mailto:info@alanyauniversity.edu.tr"><i class="fas fa-envelope"></i></a><a href="#"><i class="fas fa-map-marker-alt"></i></a></div>
+  <div class="top-bar-right"><a href="#">HIZLI ERİŞİM</a><a href="#">KÜTÜPHANE</a><a href="#">ENGLISH</a></div>
+</div></div>
+
+<!-- NAV -->
+<nav><div class="container">
+  <a href="https://www.alanyauniversity.edu.tr" class="nav-brand">
+    <div class="logo-grid"><div class="logo-sq sq1"></div><div class="logo-sq sq2"></div><div class="logo-sq sq3"></div><div class="logo-sq sq4"></div></div>
+    <div class="nav-uni-name"><span>ALANYA</span><span>ÜNİVERSİTESİ</span></div>
+  </a>
+  <ul class="nav-links" id="navLinks"><li><a href="#program">PROGRAM</a></li><li><a href="#approach">YAKLAŞIM</a></li><li><a href="#curriculum">MÜFREDAT</a></li><li><a href="#features">ÖZELLİKLER</a></li><li><a href="#certification">SERTİFİKA</a></li><li><a href="#apply">BAŞVURU</a></li></ul>
+  <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></button>
+</div></nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar"><div class="container">
+  <a href="#">Ana Sayfa</a><span class="sep">›</span><a href="#">Merkezler</a><span class="sep">›</span><a href="#">Sürekli Eğitim Merkezi</a><span class="sep">›</span>YZ ile Ofis Programları Sertifika Programı
+</div></div>
+
+<!-- HERO -->
+<section class="hero-banner"><div class="container"><div class="hero-inner">
+  <div class="hero-badge">Sürekli Eğitim Merkezi (SEM) — 2025-2026</div>
+  <h1><span class="hl">Yapay Zeka</span> ile<br>Ofis Programları<br>Sertifika Eğitim Programı</h1>
+  <p class="hero-sub">Microsoft 365 Copilot ve Claude ile ofis becerilerinizi dönüştürün.</p>
+  <div class="hero-approach"><i class="fas fa-arrows-alt-h"></i>&nbsp; Copilot + Claude Hibrit Yaklaşım</div>
+  <p class="hero-instructor">Program Koordinatörü: <strong>Dr. Öğr. Üyesi Sezai TUNCA</strong></p>
+  <div class="hero-actions"><a href="#apply" class="btn btn-gold">Hemen Başvur</a><a href="#program" class="btn btn-outline">Programı İncele</a></div>
+  <div class="hero-stats">
+    <div class="hero-stat"><h3>120</h3><p>Toplam Saat</p></div>
+    <div class="hero-stat"><h3>30</h3><p>Hafta</p></div>
+    <div class="hero-stat"><h3>3</h3><p>Seviye</p></div>
+    <div class="hero-stat"><h3>4</h3><p>Saat / Hafta</p></div>
+  </div>
+</div></div></section>
+
+<!-- ICON CARDS -->
+<section style="padding:0;"><div class="container"><div class="icon-cards">
+  <div class="icon-card"><div class="ic-icon"><i class="fas fa-laptop-code"></i></div><h4>%100 Online<br>Canlı Eğitim</h4></div>
+  <div class="icon-card"><div class="ic-icon"><i class="fas fa-robot"></i></div><h4>Copilot + Claude<br>Hibrit Yaklaşım</h4></div>
+  <div class="icon-card"><div class="ic-icon"><i class="fas fa-briefcase"></i></div><h4>Gerçek İş<br>Senaryoları</h4></div>
+  <div class="icon-card"><div class="ic-icon"><i class="fas fa-certificate"></i></div><h4>3 Ayrı<br>SEM Sertifikası</h4></div>
+</div></div></section>
+
+<!-- HYBRID APPROACH -->
+<section id="approach">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-label">YZ Araç Stratejisi</span>
+      <h2>Copilot + Claude Hibrit Yaklaşım</h2>
+      <div class="section-divider"></div>
+      <p>Her YZ aracını en güçlü olduğu alanda kullanarak maksimum verimlilik sağlıyoruz.</p>
+    </div>
+    <div class="hybrid-grid">
+      <div class="hybrid-card copilot">
+        <span class="hc-badge"><i class="fas fa-robot"></i>&nbsp; Microsoft 365 Copilot</span>
+        <h3>Office İçinde Yerleşik YZ</h3>
+        <p>Word, Excel, PowerPoint, Outlook ve Teams içinde doğrudan çalışır. İş ortamına birebir aktarılabilir deneyim sunar.</p>
+        <ul>
+          <li>Word'de metin yazma, düzenleme, özet çıkarma</li>
+          <li>Excel'de formül oluşturma, grafik ve analiz</li>
+          <li>PowerPoint'te sunum tasarımı</li>
+          <li>Outlook ve Teams'de e-posta/toplantı yönetimi</li>
+          <li>Power BI, Power Automate, Copilot Studio</li>
+        </ul>
+      </div>
+      <div class="hybrid-card claude">
+        <span class="hc-badge"><i class="fas fa-brain"></i>&nbsp; Claude (Anthropic)</span>
+        <h3>İleri Analiz ve Kod Geliştirme</h3>
+        <p>Uzun doküman analizi, karmaşık prompt tasarımı ve kod geliştirmede üstün performans gösterir.</p>
+        <ul>
+          <li>Uzun doküman analizi ve yeniden yapılandırma</li>
+          <li>Karmaşık ve çok adımlı prompt tasarımı</li>
+          <li>VBA, Python, Office Scripts kod geliştirme</li>
+          <li>İş akışı ve otomasyon mantığı tasarımı</li>
+          <li>Strateji belgesi ve politika dokümanı hazırlama</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEVELS -->
+<section id="program" style="background:var(--bg-light);">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-label">Program Yapısı</span>
+      <h2>Üç Aşamalı Eğitim Yolculuğu</h2>
+      <div class="section-divider"></div>
+      <p>Temel Office + YZ kullanımından kurumsal otomasyon çözümlerine kadar adım adım ilerleyin.</p>
+    </div>
+    <div class="levels-grid">
+      <div class="level-card">
+        <div class="lc-header"><span class="lc-tag">Başlangıç</span><h3>YZ ile Office Temelleri</h3><p>Copilot ile Word, Excel, PowerPoint, Outlook</p></div>
+        <div class="lc-tools"><i class="fas fa-robot"></i> Ağırlıklı: Copilot &nbsp;|&nbsp; <i class="fas fa-brain"></i> Tanışma: Claude</div>
+        <div class="lc-meta"><div class="lc-meta-item"><strong>8</strong> Hafta</div><div class="lc-meta-item"><strong>32</strong> Saat</div><div class="lc-meta-item"><strong>—</strong> Ön koşul yok</div></div>
+        <div class="lc-body"><h5>Öne Çıkan Konular</h5><ul>
+          <li>Microsoft 365 Copilot'a giriş</li><li>Word ile akıllı doküman oluşturma</li><li>Excel ile YZ destekli veri analizi</li><li>PowerPoint ile etkileyici sunumlar</li><li>Outlook ve Teams ile akıllı iletişim</li><li>Claude ile tanışma ve karşılaştırma</li>
+        </ul></div>
+      </div>
+      <div class="level-card">
+        <div class="lc-header"><span class="lc-tag">Orta Seviye</span><h3>İleri Office ve Otomasyon</h3><p>Power BI, Power Automate, ileri prompt teknikleri</p></div>
+        <div class="lc-tools"><i class="fas fa-robot"></i> Ana: Copilot &nbsp;|&nbsp; <i class="fas fa-brain"></i> Aktif: Claude (prompt + analiz)</div>
+        <div class="lc-meta"><div class="lc-meta-item"><strong>10</strong> Hafta</div><div class="lc-meta-item"><strong>40</strong> Saat</div><div class="lc-meta-item"><strong>Başlangıç</strong> sertifikası</div></div>
+        <div class="lc-body"><h5>Öne Çıkan Konular</h5><ul>
+          <li>İleri prompt mühendisliği (Copilot + Claude)</li><li>Power BI ile veri görselleştirme</li><li>Power Automate ile iş akışı otomasyonu</li><li>İleri Excel analiz ve raporlama</li><li>SharePoint ile içerik yönetimi</li><li>Claude ile doküman analizi</li>
+        </ul></div>
+      </div>
+      <div class="level-card">
+        <div class="lc-header"><span class="lc-tag">İleri Seviye</span><h3>Kurumsal Çözümler ve Uzmanlaşma</h3><p>Copilot Studio, Power Apps, VBA + YZ, strateji</p></div>
+        <div class="lc-tools"><i class="fas fa-robot"></i> Copilot Studio &nbsp;|&nbsp; <i class="fas fa-brain"></i> Ana: Claude (kod + strateji)</div>
+        <div class="lc-meta"><div class="lc-meta-item"><strong>12</strong> Hafta</div><div class="lc-meta-item"><strong>48</strong> Saat</div><div class="lc-meta-item"><strong>Orta</strong> sertifikası</div></div>
+        <div class="lc-body"><h5>Öne Çıkan Konular</h5><ul>
+          <li>Copilot Studio ile özel asistan</li><li>Claude ile VBA/Python kod geliştirme</li><li>Power Apps ile uygulama geliştirme</li><li>Python in Excel ve veri bilimi</li><li>Kurumsal YZ stratejisi ve güvenlik</li><li>Kapsamlı bitirme projesi</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section id="curriculum">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-label">Müfredat</span>
+      <h2>Haftalık Eğitim Planı</h2>
+      <div class="section-divider"></div>
+      <p>Her hafta 2 saat teori + 2 saat uygulamalı çalışma</p>
+    </div>
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('beginner',this)">Başlangıç (8 Hafta)</button>
+      <button class="tab-btn" onclick="switchTab('intermediate',this)">Orta Seviye (10 Hafta)</button>
+      <button class="tab-btn" onclick="switchTab('advanced',this)">İleri Seviye (12 Hafta)</button>
+    </div>
+
+    <div class="tab-content active" id="tab-beginner"><table class="curr-table"><thead><tr><th>Hafta</th><th>Konu</th><th>İçerik</th><th>Uygulama / Ödev</th></tr></thead><tbody>
+      <tr><td>1</td><td>YZ ve Office Ekosistemine Giriş</td><td>YZ temel kavramları, Microsoft 365 Copilot tanıtımı, Google Workspace AI, Claude ile tanışma</td><td>YZ araçları keşif raporu</td></tr>
+      <tr><td>2</td><td>Word & YZ: Akıllı Doküman I</td><td>Copilot ile metin yazma/düzenleme, otomatik özet, yazım düzeltme, şablon ve stil önerileri</td><td>YZ ile profesyonel rapor yazma</td></tr>
+      <tr><td>3</td><td>Word & YZ: Akıllı Doküman II</td><td>Copilot ile içerik taslağı, metin genişletme/kısaltma, ton değiştirme, Claude ile uzun doküman analizi</td><td>YZ destekli makale düzenleme</td></tr>
+      <tr><td>4</td><td>Excel & YZ: Veri Analizi I</td><td>Copilot ile formül oluşturma, veri temizleme, tablo biçimlendirme, pivot tablo, hızlı analiz</td><td>YZ ile satış verisi analizi</td></tr>
+      <tr><td>5</td><td>Excel & YZ: Veri Analizi II</td><td>Copilot ile grafik oluşturma, trend analizi, filtreleme, koşullu biçimlendirme, tahmin modelleri</td><td>YZ ile bütçe dashboard'u</td></tr>
+      <tr><td>6</td><td>PowerPoint & YZ: Sunumlar</td><td>Copilot ile sunum taslağı, slayt tasarımı, görsel öneriler, konuşmacı notları, Designer</td><td>YZ ile proje sunumu hazırlama</td></tr>
+      <tr><td>7</td><td>Outlook, Teams & YZ</td><td>Copilot ile e-posta yazma/özetleme, toplantı özetleri, görev yönetimi, Teams YZ asistanı</td><td>İletişim yönetimi senaryosu</td></tr>
+      <tr><td>8</td><td>Entegre Proje</td><td>Copilot + Claude hibrit kullanımı, tüm Office uygulamalarıyla iş akışı, verimlilik karşılaştırması</td><td>Kapsamlı mini proje sunumu</td></tr>
+    </tbody></table></div>
+
+    <div class="tab-content" id="tab-intermediate"><table class="curr-table"><thead><tr><th>Hafta</th><th>Konu</th><th>İçerik</th><th>Uygulama / Ödev</th></tr></thead><tbody>
+      <tr><td>1</td><td>İleri Prompt Mühendisliği</td><td>Copilot ve Claude için etkili prompt stratejileri, bağlam yönetimi, Copilot Lab, çıktı karşılaştırma</td><td>Prompt kütüphanesi oluşturma</td></tr>
+      <tr><td>2</td><td>Excel & YZ: İleri Analiz</td><td>Karmaşık formüller, XLOOKUP/INDEX-MATCH, dinamik diziler, Power Pivot, Claude ile formül açıklama</td><td>Karmaşık veri seti analizi</td></tr>
+      <tr><td>3</td><td>Excel & YZ: Görselleştirme</td><td>İleri grafik türleri, etkileşimli dashboard, sparkline, koşullu görselleştirme, rapor otomasyonu</td><td>İnteraktif satış dashboard'u</td></tr>
+      <tr><td>4</td><td>Power BI & YZ</td><td>Power BI giriş, Copilot ile rapor oluşturma, veri modelleme, DAX için YZ desteği, paylaşım</td><td>Power BI departman raporu</td></tr>
+      <tr><td>5</td><td>Word & YZ: Profesyonel Dokümanlar</td><td>Uzun doküman yönetimi, içindekiler, mail merge + YZ, Claude ile doküman analizi/karşılaştırma</td><td>20+ sayfalık rapor hazırlama</td></tr>
+      <tr><td>6</td><td>PowerPoint İleri Teknikler</td><td>Veri odaklı sunumlar, Excel entegrasyonu, animasyon, video/ses, Copilot ile yeniden tasarım</td><td>Veri destekli iş sunumu</td></tr>
+      <tr><td>7</td><td>Power Automate & YZ</td><td>Power Automate giriş, Copilot ile akış oluşturma, e-posta kuralları, dosya otomasyonu, onay süreçleri</td><td>3 iş akışı otomasyonu</td></tr>
+      <tr><td>8</td><td>OneNote, Forms & YZ</td><td>OneNote Copilot, akıllı not alma, Forms ile anket oluşturma, sonuç analizi, bilgi tabanı</td><td>YZ destekli anket ve analiz</td></tr>
+      <tr><td>9</td><td>SharePoint & YZ</td><td>SharePoint Online, Copilot ile sayfa oluşturma, doküman kütüphanesi, arama optimizasyonu</td><td>Departman portalı oluşturma</td></tr>
+      <tr><td>10</td><td>Entegre Proje</td><td>Çoklu uygulama senaryoları, Copilot + Claude hibrit kullanım, verimlilik ölçümleme, best practices</td><td>Uçtan uca Office + YZ projesi</td></tr>
+    </tbody></table></div>
+
+    <div class="tab-content" id="tab-advanced"><table class="curr-table"><thead><tr><th>Hafta</th><th>Konu</th><th>İçerik</th><th>Uygulama / Ödev</th></tr></thead><tbody>
+      <tr><td>1</td><td>Copilot Mimarisi</td><td>Copilot çalışma prensibi, Microsoft Graph, semantic index, kurumsal veri güvenliği</td><td>Mimari analiz raporu</td></tr>
+      <tr><td>2</td><td>Claude ile İleri Entegrasyon</td><td>Claude API kullanımı, özel iş akışları, uzun doküman analizi, Copilot vs Claude karşılaştırması</td><td>Claude destekli otomasyon tasarımı</td></tr>
+      <tr><td>3</td><td>Excel & Python & YZ</td><td>Python in Excel, Copilot + Claude ile Python kodu, pandas/matplotlib, istatistiksel analiz</td><td>Python ile Excel veri analizi</td></tr>
+      <tr><td>4</td><td>Power BI İleri Analitik</td><td>İleri DAX, AI Insights, anomali tespiti, tahmin modelleri, real-time dashboard</td><td>Tahminleyici analitik dashboard</td></tr>
+      <tr><td>5</td><td>VBA & Office Scripts & YZ</td><td>VBA temelleri, Copilot + Claude ile makro/script yazma, özel fonksiyonlar, hata ayıklama</td><td>Otomasyon makroları geliştirme</td></tr>
+      <tr><td>6</td><td>Power Apps & YZ</td><td>Power Apps Copilot, düşük kodlu uygulama geliştirme, veri bağlantıları, Canvas apps</td><td>İş uygulaması geliştirme</td></tr>
+      <tr><td>7</td><td>Copilot Studio</td><td>Özel copilot oluşturma, bilgi tabanı bağlama, konuşma akışı, çok kanallı dağıtım</td><td>Kurumsal chatbot geliştirme</td></tr>
+      <tr><td>8</td><td>Alternatif YZ Platformları</td><td>Google Gemini, NotebookLM, Notion AI, Claude ileri kullanım, platform seçim kriterleri</td><td>Çoklu platform raporu</td></tr>
+      <tr><td>9</td><td>Doküman Otomasyonu</td><td>Toplu doküman üretimi, Claude ile içerik pipeline'ı, PDF otomasyon, arşivleme</td><td>Doküman otomasyon sistemi</td></tr>
+      <tr><td>10</td><td>Kurumsal YZ Stratejisi</td><td>YZ politikası, Copilot + Claude kullanım kuralları, KVKK/GDPR, veri güvenliği, etik</td><td>YZ güvenlik politikası taslağı</td></tr>
+      <tr><td>11</td><td>Eğitim ve Değişim Yönetimi</td><td>Kurum içi YZ eğitim planı, değişim yönetimi, adaptasyon, ROI ölçümleme</td><td>Kurumsal YZ adaptasyon planı</td></tr>
+      <tr><td>12</td><td>Bitirme Projesi</td><td>Gerçek iş problemini Copilot + Claude + Office ile çözme, dokümantasyon, final sunumu</td><td>Kapsamlı bitirme projesi</td></tr>
+    </tbody></table></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" style="background:var(--bg-light);">
+  <div class="container">
+    <div class="section-header center"><span class="section-label">Neden Bu Program?</span><h2>Eğitim Özellikleri</h2><div class="section-divider"></div></div>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-video"></i></div><h4>Canlı Online Dersler</h4><p>Teams üzerinden canlı ve interaktif dersler. Tüm kayıtlar sonradan tekrar izlenebilir.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-arrows-alt-h"></i></div><h4>Hibrit YZ Yaklaşım</h4><p>Copilot'u Office içinde, Claude'u analiz ve kod geliştirmede kullanarak her aracın en güçlü yönünden faydalanın.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-briefcase"></i></div><h4>Gerçek İş Senaryoları</h4><p>Her hafta gerçek iş dünyası senaryolarıyla uygulama. Hemen işinizde kullanabileceğiniz beceriler.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-cogs"></i></div><h4>Power Platform</h4><p>Power BI, Power Automate, Power Apps ile iş süreçlerinizi otomatikleştirin ve görselleştirin.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-award"></i></div><h4>SEM Onaylı Sertifika</h4><p>Her seviye sonunda Alanya Üniversitesi SEM onaylı sertifika. Üçünü tamamlayanlara Uzmanlık Sertifikası.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-user-tie"></i></div><h4>Herkese Uygun</h4><p>Teknik bilgi gerektirmez. Ofis çalışanından yöneticiye, öğrenciden IT uzmanına herkes katılabilir.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section>
+  <div class="container">
+    <div class="section-header center"><span class="section-label">Teknoloji</span><h2>Kullanılacak Araç ve Platformlar</h2><div class="section-divider"></div></div>
+    <div class="tools-grid">
+      <div class="tool-item"><i class="fas fa-file-word"></i> Microsoft Word</div>
+      <div class="tool-item"><i class="fas fa-file-excel"></i> Microsoft Excel</div>
+      <div class="tool-item"><i class="fas fa-file-powerpoint"></i> PowerPoint</div>
+      <div class="tool-item"><i class="fas fa-envelope"></i> Outlook</div>
+      <div class="tool-item"><i class="fas fa-users"></i> Microsoft Teams</div>
+      <div class="tool-item"><i class="fas fa-robot"></i> Microsoft 365 Copilot</div>
+      <div class="tool-item"><i class="fas fa-brain"></i> Claude (Anthropic)</div>
+      <div class="tool-item"><i class="fas fa-chart-bar"></i> Power BI</div>
+      <div class="tool-item"><i class="fas fa-bolt"></i> Power Automate</div>
+      <div class="tool-item"><i class="fas fa-th"></i> Power Apps</div>
+      <div class="tool-item"><i class="fas fa-share-alt"></i> SharePoint Online</div>
+      <div class="tool-item"><i class="fas fa-hat-wizard"></i> Copilot Studio</div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTOR -->
+<section style="background:var(--bg-light);">
+  <div class="container">
+    <div class="section-header center"><span class="section-label">Eğitim Sorumlusu</span><h2>Program Koordinatörü</h2><div class="section-divider"></div></div>
+    <div class="instructor-box">
+      <div class="instructor-avatar">ST</div>
+      <div class="instructor-info">
+        <h3>Dr. Öğr. Üyesi Sezai TUNCA</h3>
+        <div class="title">Alanya Üniversitesi — Sürekli Eğitim Merkezi</div>
+        <p>Yapay Zeka ile Ofis Programları Sertifika Eğitim Programı koordinatörü. Program müfredatının oluşturulması, Copilot ve Claude hibrit eğitim stratejisinin yürütülmesi ve akademik kadronun yönetiminden sorumludur.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATION -->
+<section id="certification">
+  <div class="container">
+    <div class="section-header center"><span class="section-label">Sertifikasyon</span><h2>Sertifika Yolculuğu</h2><div class="section-divider"></div><p>Her seviyeyi başarıyla tamamlayarak adım adım uzmanlığınızı belgeleyin.</p></div>
+    <div class="cert-flow">
+      <div class="cert-step"><div class="step-num">1</div><h4>Başlangıç Sertifikası</h4><p>YZ ile Office Temelleri<br>32 Saat • Copilot Odaklı</p></div>
+      <div class="cert-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="cert-step"><div class="step-num">2</div><h4>Orta Seviye Sertifikası</h4><p>İleri Office ve Otomasyon<br>40 Saat • Copilot + Claude</p></div>
+      <div class="cert-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="cert-step"><div class="step-num">3</div><h4>İleri Seviye Sertifikası</h4><p>Kurumsal YZ Çözümleri<br>48 Saat • Hibrit Yaklaşım</p></div>
+    </div>
+    <div class="cert-final">
+      <div class="gold-badge"><i class="fas fa-trophy"></i></div>
+      <h3>Yapay Zeka ile Ofis Teknolojileri Uzmanlık Sertifikası</h3>
+      <p>Üç seviyeyi tamamlayanlara — Alanya Üniversitesi SEM onaylı — 120 Saat / 30 Hafta</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="apply">
+  <h2>Ofis Becerilerinizi YZ ile Dönüştürün</h2>
+  <p>Kontenjan sınırlıdır. Yerinizi ayırmak için hemen başvurun.</p>
+  <a href="mailto:info@alanyauniversity.edu.tr" class="btn-gold-lg">Başvuru Formu</a>
+</section>
+
+<!-- FOOTER -->
+<footer><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>ALANYA ÜNİVERSİTESİ</h3>
+      <p>Sürekli Eğitim Merkezi (SEM)<br>
+      <strong>Merkez Kampüsü:</strong> Cikcilli Mah. Saraybeleni Cad. No:7, 07400 Alanya/Antalya/Türkiye<br>
+      <strong>Hamdullah Emin Paşa Kampüsü:</strong> Çarşı Mah. Hamdullah Eminpaşa Sk. No:14, 07400 Alanya/Antalya/Türkiye</p>
+    </div>
+    <div class="footer-col">
+      <h4>Hızlı Erişim</h4>
+      <ul><li><a href="#program">Program</a></li><li><a href="#approach">YZ Yaklaşımı</a></li><li><a href="#curriculum">Müfredat</a></li><li><a href="#features">Özellikler</a></li><li><a href="#certification">Sertifika</a></li><li><a href="#apply">Başvuru</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>İletişim</h4>
+      <ul>
+        <li><a href="https://www.alanyauniversity.edu.tr">www.alanyauniversity.edu.tr</a></li>
+        <li><a href="mailto:info@alanyauniversity.edu.tr">info@alanyauniversity.edu.tr</a></li>
+        <li><a href="tel:+902425136969">+90 242 513 69 69 / 3500</a></li>
+        <li>Faks: +90 242 513 69 66</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Alanya Üniversitesi Sürekli Eğitim Merkezi — Tüm Hakları Saklıdır</span>
+    <div class="footer-socials"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+  </div>
+</div></footer>
+
+<script>
+function switchTab(level,btn){document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+level).classList.add('active');btn.classList.add('active')}
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.style.opacity='1';el.target.style.transform='translateY(0)'}})},{threshold:.1});
+document.querySelectorAll('.level-card,.feature-card,.tool-item,.cert-step,.icon-card,.hybrid-card').forEach((el,i)=>{el.style.opacity='0';el.style.transform='translateY(16px)';el.style.transition=`opacity .5s ease-out ${i*.04}s,transform .5s ease-out ${i*.04}s`;obs.observe(el)});
+</script>
+</body>
+</html>
